@@ -1,7 +1,10 @@
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 
 /*
@@ -113,7 +116,30 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-       
+             try {
+                 stmt = conn.createStatement();
+                 String UserName = username.getText();
+                 String UserPass = password.getText();
+                 
+                  String sql ="SELECT * FROM admin WHERE username='"+UserName+"' && password = '"+UserPass+"' ";
+                
+                 rs =stmt.executeQuery(sql);
+                 if(rs.next()){
+                     setVisible(false);
+                     Home object = new Home();
+                     object.setVisible(true);
+                     
+                 }
+                 else{
+                     JOptionPane.showMessageDialog(null,"Passwprd or username is invalid");
+                 }
+                 
+                 
+                 
+             }catch (HeadlessException | SQLException e){
+                 JOptionPane.showMessageDialog(null,e);
+                 
+             }   
 
     }//GEN-LAST:event_loginActionPerformed
 
