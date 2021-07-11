@@ -1,3 +1,9 @@
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,9 +18,16 @@ public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
+
      */
-    public Login() {
+    Connection conn =null;
+    Statement stmt = null;
+    ResultSet rs = null;
+    
+    public Login() throws ClassNotFoundException {
+        super ("Login");
         initComponents();
+        conn = databaseConnection.connection();
     }
 
     /**
@@ -100,30 +113,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        try
-        {
-            stmt = con.createStatement();
-            String query = "SELECT * FROM admin";
-            String Username = username.getText();
-            String Password = password.getText();
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()){
-                if(Username.equals(rs.getString(2))&& Password.equals(rs.getString(3)))
-                {
-                    setVisible(false);
-                    Home view =new Home();
-                    view.setVisible(true);
-                }
-                else{
-                    errormsg.setVisible(true);
-                    errormsg.setText("Incorrect Username or Password");
-                }
-            }
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
+       
 
     }//GEN-LAST:event_loginActionPerformed
 
@@ -159,11 +149,11 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+       // java.awt.EventQueue.invokeLater(new Runnable() {
+          //  public void run() {
+              //  new Login().setVisible(true);
+         //   }
+       // });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
