@@ -27,17 +27,51 @@ public class Welcome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        progress = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Welcome");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(360, 110, 208, 40);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel2.setText("Student Managment System");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(196, 152, 648, 44);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("LOADING.....");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(380, 280, 155, 29);
+
+        progress.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        progress.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        progress.setStringPainted(true);
+        jPanel1.add(progress);
+        progress.setBounds(270, 336, 354, 32);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\aaaaaaaaa\\new.jpeg")); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(0, 0, 820, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
         );
 
         pack();
@@ -71,13 +105,38 @@ public class Welcome extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Welcome().setVisible(true);
+       // java.awt.EventQueue.invokeLater(new Runnable() {
+           // public void run() {
+              //  new Welcome().setVisible(true);
+            //}
+        //});
+         Welcome load = new Welcome();
+        load.setVisible(true);
+        
+        try{
+            for(int i = 0; i<100; i++)
+            {
+                Thread.sleep(30);
+                load.progress.setValue(i);
+               
             }
-        });
+              load.setVisible(false);
+              Login log = new Login();
+              log.setVisible(true);
+            
+        }
+         catch (Exception e)
+         {
+             System.out.println(e);
+         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JProgressBar progress;
     // End of variables declaration//GEN-END:variables
 }
