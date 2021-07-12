@@ -85,6 +85,11 @@ public class Home extends javax.swing.JFrame {
         oparetion1.setBounds(361, 171, 161, 137);
 
         showstudent.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\project Image\\showStudent.png")); // NOI18N
+        showstudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showstudentActionPerformed(evt);
+            }
+        });
         jPanel1.add(showstudent);
         showstudent.setBounds(687, 171, 152, 137);
 
@@ -147,6 +152,11 @@ public class Home extends javax.swing.JFrame {
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\project Image\\home.png")); // NOI18N
         jMenuItem1.setText("Home");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
@@ -220,6 +230,21 @@ public class Home extends javax.swing.JFrame {
         }
                      object.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void showstudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showstudentActionPerformed
+                    setVisible(false);
+                     showStudent object = null;
+        try {
+            object = new showStudent();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                     object.setVisible(true);
+    }//GEN-LAST:event_showstudentActionPerformed
 
     /**
      * @param args the command line arguments
