@@ -269,9 +269,16 @@ public class Student extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        // TODO add your handling code here:
+
         try{
-            
+            stmt = conn.createStatement();
+             int Id = Integer.parseInt(stdId.getText());
+             String sql= "DELETE FROM student WHERE Id='"+Id+"' ";
+             stmt.executeUpdate(sql);
+             
+              setVisible(false);
+              showStudent object = new showStudent();
+             object.setVisible(true);
 
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,e);
