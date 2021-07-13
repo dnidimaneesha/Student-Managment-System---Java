@@ -96,9 +96,9 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel7.setBounds(29, 388, 56, 22);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Guardian");
+        jLabel8.setText("Subjects");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(29, 472, 70, 22);
+        jLabel8.setBounds(29, 472, 66, 22);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Contact No.");
@@ -107,7 +107,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         stdAddress.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(stdAddress);
-        stdAddress.setBounds(148, 190, 260, 31);
+        stdAddress.setBounds(148, 190, 260, 40);
 
         stdName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(stdName);
@@ -132,7 +132,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         stdFatherName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jPanel1.add(stdFatherName);
-        stdFatherName.setBounds(148, 472, 260, 31);
+        stdFatherName.setBounds(150, 460, 260, 50);
 
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("BACK");
@@ -181,10 +181,10 @@ public class AddStudent extends javax.swing.JFrame {
               int grade = Integer.parseInt(stdGrade.getText());
              int age = Integer.parseInt(stdAge.getText());
              String gender = (String) stdgender.getSelectedItem();
-             String guardian = stdFatherName.getText();
+             String subjects = stdFatherName.getText();
              int contact = Integer.parseInt(stdphone.getText());
              
-             String sql = "INSERT INTO STUDENT(name, address, grade, age, gender, guardian, contact) VALUES('"+name+"', '"+address+"', '"+grade+"', '"+age+"', '"+gender+"', '"+guardian+"', '"+contact+"' )";
+             String sql = "INSERT INTO STUDENT(name, address, grade, age, gender, subjects, contact) VALUES('"+name+"', '"+address+"', '"+grade+"', '"+age+"', '"+gender+"', '"+subjects+"', '"+contact+"' )";
              
                   stmt.executeUpdate(sql);
                   JOptionPane.showMessageDialog(null,"added data succsessfully");

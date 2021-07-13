@@ -81,6 +81,11 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setBounds(20, 10, 53, 27);
 
         oparetion1.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\project Image\\configuration.png")); // NOI18N
+        oparetion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oparetion1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(oparetion1);
         oparetion1.setBounds(361, 171, 161, 137);
 
@@ -245,6 +250,18 @@ public class Home extends javax.swing.JFrame {
         }
                      object.setVisible(true);
     }//GEN-LAST:event_showstudentActionPerformed
+
+    private void oparetion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oparetion1ActionPerformed
+                     setVisible(false);
+                     Student object = null;
+        try {
+            object = new Student();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                     object.setVisible(true);
+                                             
+    }//GEN-LAST:event_oparetion1ActionPerformed
 
     /**
      * @param args the command line arguments

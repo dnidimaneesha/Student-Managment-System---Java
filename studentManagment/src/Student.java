@@ -1,3 +1,9 @@
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +19,15 @@ public class Student extends javax.swing.JFrame {
     /**
      * Creates new form Student
      */
-    public Student() {
+     Connection conn =null;
+    Statement stmt = null;
+    ResultSet rs = null;
+    
+    
+    public Student() throws ClassNotFoundException {
+        super ("Student");
         initComponents();
+        conn = databaseConnection.connection();
     }
 
     /**
@@ -38,16 +51,16 @@ public class Student extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         stdAge = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        stdgender = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         stdFatherName = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         stdphone = new javax.swing.JTextField();
-        update = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        update1 = new javax.swing.JButton();
-        update2 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        search = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        stdGender = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -80,9 +93,6 @@ public class Student extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Gender");
 
-        stdgender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        stdgender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Male", "Female" }));
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Guardian");
 
@@ -93,11 +103,11 @@ public class Student extends javax.swing.JFrame {
 
         stdphone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        update.setText("DELETE");
-        update.addActionListener(new java.awt.event.ActionListener() {
+        delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        delete.setText("DELETE");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
 
@@ -109,24 +119,26 @@ public class Student extends javax.swing.JFrame {
             }
         });
 
-        update1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        update1.setText("UPDATE");
-        update1.addActionListener(new java.awt.event.ActionListener() {
+        update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        update.setText("UPDATE");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update1ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
 
-        update2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        update2.setText("SEARCH");
-        update2.addActionListener(new java.awt.event.ActionListener() {
+        search.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        search.setText("SEARCH");
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update2ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Student operate");
+
+        stdGender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,17 +148,9 @@ public class Student extends javax.swing.JFrame {
                 .addGap(0, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(51, 51, 51)
-                        .addComponent(stdFatherName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(51, 51, 51)
                         .addComponent(stdphone, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(65, 65, 65)
-                        .addComponent(stdgender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(54, 54, 54)
@@ -167,13 +171,24 @@ public class Student extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(31, 31, 31)
-                            .addComponent(stdName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(stdName, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(51, 51, 51))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(65, 65, 65)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(stdFatherName, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(stdGender))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(update2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(update1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -190,7 +205,7 @@ public class Student extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stdId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(update2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -201,7 +216,7 @@ public class Student extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(stdAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(stdGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,18 +225,18 @@ public class Student extends javax.swing.JFrame {
                         .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(update1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(stdAge, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(36, 36, 36)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(stdgender, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(39, 39, 39)
+                    .addComponent(jLabel7)
+                    .addComponent(stdGender, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stdFatherName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -253,27 +268,15 @@ public class Student extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
         try{
-            stmt = conn.createStatement();
-            String name = stdName.getText();
-            String address = stdAddress.getText();
-            int grade = Integer.parseInt(stdGrade.getText());
-            int age = Integer.parseInt(stdAge.getText());
-            String gender = (String) stdgender.getSelectedItem();
-            String guardian = stdFatherName.getText();
-            int contact = Integer.parseInt(stdphone.getText());
-
-            String sql = "INSERT INTO STUDENT(name, address, grade, age, gender, guardian, contact) VALUES('"+name+"', '"+address+"', '"+grade+"', '"+age+"', '"+gender+"', '"+guardian+"', '"+contact+"' )";
-
-            stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"added data succsessfully");
+            
 
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
-    }//GEN-LAST:event_updateActionPerformed
+    }//GEN-LAST:event_deleteActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
@@ -282,13 +285,51 @@ public class Student extends javax.swing.JFrame {
         object.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
-    private void update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_update1ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        try{
+             stmt = conn.createStatement();
+             int Id = Integer.parseInt(stdId.getText());
+             String name = stdName.getText();
+             String address = stdAddress.getText();
+             int grade = Integer.parseInt(stdGrade.getText());
+             int age = Integer.parseInt(stdAge.getText());
+             String gender =  stdGender.getText();
+             String subjects = stdFatherName.getText();
+             int contact = Integer.parseInt(stdphone.getText());
+             
+             String sql = "UPDATE STUDENT SET name ='"+name+"', address='"+address+"', grade='"+grade+"', age='"+age+"', gender='"+gender+"', subjects='"+subjects+"', contact='"+contact+"' WHERE Id= '"+Id+"' ";
+             
+                  stmt.executeUpdate(sql);
+                  JOptionPane.showMessageDialog(null,"Update data succsessfully");
+                  
+         } catch (Exception e){
+             JOptionPane.showMessageDialog(null,e);
+         }
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void update2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_update2ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+                try{
+                    stmt = conn.createStatement();
+                    int Id =  Integer.parseInt(stdId.getText());
+                    
+                    String sql = "SELECT * FROM STUDENT WHERE Id= '"+Id+"' ";
+                    rs = stmt.executeQuery(sql);
+                    
+                    if (rs.next()){
+                        stdName.setText(rs.getString("name"));
+                        stdAddress.setText(rs.getString("address"));
+                        stdGrade.setText(rs.getString("grade"));
+                        stdAge.setText(String.format("%s",rs.getInt("age")));
+                        stdGender.setText(rs.getString("gender"));
+                        stdFatherName.setText(rs.getString("subjects"));
+                        stdphone.setText(String.format("%s",rs.getInt("contact")));
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Record Not Found");
+                    }
+                }  
+                  catch (Exception e){JOptionPane.showMessageDialog(null,e);}
+    }//GEN-LAST:event_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,13 +361,14 @@ public class Student extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Student().setVisible(true);
+              //  new Student().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -337,16 +379,15 @@ public class Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton search;
     private javax.swing.JTextField stdAddress;
     private javax.swing.JTextField stdAge;
     private javax.swing.JTextField stdFatherName;
+    private javax.swing.JTextField stdGender;
     private javax.swing.JTextField stdGrade;
     private javax.swing.JTextField stdId;
     private javax.swing.JTextField stdName;
-    private javax.swing.JComboBox<String> stdgender;
     private javax.swing.JTextField stdphone;
     private javax.swing.JButton update;
-    private javax.swing.JButton update1;
-    private javax.swing.JButton update2;
     // End of variables declaration//GEN-END:variables
 }
