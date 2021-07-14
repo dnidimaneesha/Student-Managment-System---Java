@@ -1,6 +1,12 @@
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,11 +20,30 @@ import java.util.logging.Logger;
  */
 public class ShowAdmin extends javax.swing.JFrame {
 
+         Connection conn = null;
+         Statement stmt = null;
+         ResultSet rs =null;
+    
     /**
      * Creates new form ShowAdmin
      */
-    public ShowAdmin() {
+    public ShowAdmin() throws ClassNotFoundException, SQLException {
+        super("showAdmin");
         initComponents();
+        conn = databaseConnection.connection();
+        showRecord();
+    }
+    public void showRecord() throws SQLException{
+        try{
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM admin";
+            ResultSet res = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }
 
     /**
@@ -67,6 +92,11 @@ public class ShowAdmin extends javax.swing.JFrame {
         back.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         back.setText("Back");
         back.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Add Admin");
@@ -202,6 +232,12 @@ public class ShowAdmin extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        setVisible(false);
+        Home object = new Home();
+        object.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,7 +268,7 @@ public class ShowAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowAdmin().setVisible(true);
+              //  new ShowAdmin().setVisible(true);
             }
         });
     }

@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class showStudent extends javax.swing.JFrame {
             
             
            
-       } catch (Exception e)
+       } catch (SQLException e)
        {
            JOptionPane.showMessageDialog(null, e);
        }

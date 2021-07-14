@@ -286,7 +286,12 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         setVisible(false);
-        ShowAdmin object = new ShowAdmin();
+        ShowAdmin object = null;
+        try {
+            object = new ShowAdmin();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
         object.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
