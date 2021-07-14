@@ -36,10 +36,12 @@ public class showStudent extends javax.swing.JFrame {
     }
     public void showRecord(){
        try{
-           stmt = conn.createStatement();
+               stmt = conn.createStatement();
+           
+           if(stdGrade.getSelectedItem().equals("All"))  {  
            String sql = "SELECT * FROM STUDENT";
             ResultSet res =stmt.executeQuery(sql);
-            jTable1.setModel(DbUtils.resultSetToTableModel(res));
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
             
             
            
@@ -62,6 +64,7 @@ public class showStudent extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        stdGrade = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -100,14 +103,19 @@ public class showStudent extends javax.swing.JFrame {
             }
         });
 
+        stdGrade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        stdGrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "6", "7", "8", "9", "10", "11" }));
+        stdGrade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        stdGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stdGradeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,16 +123,24 @@ public class showStudent extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(550, 550, 550)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(518, 518, 518)
+                        .addComponent(stdGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
+                .addComponent(stdGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(jButton1)
                 .addGap(76, 76, 76))
         );
@@ -213,6 +229,50 @@ public class showStudent extends javax.swing.JFrame {
                      object.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void stdGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdGradeActionPerformed
+        try{
+            
+           stmt = conn.createStatement();
+             if(stdGrade.getSelectedItem().equals("All"))  {  
+           String sql = "SELECT * FROM STUDENT";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+             
+             if(stdGrade.getSelectedItem().equals("6"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+6+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+             
+            if(stdGrade.getSelectedItem().equals("7"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+7+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+            
+             if(stdGrade.getSelectedItem().equals("8"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+8+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+             
+            if(stdGrade.getSelectedItem().equals("9"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+9+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));} 
+            
+            if(stdGrade.getSelectedItem().equals("10"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+10+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+            
+            if(stdGrade.getSelectedItem().equals("11"))  {  
+            String sql = "SELECT * FROM STUDENT WHERE grade= '"+11+"'";
+            ResultSet res =stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));}
+               
+               
+        }
+        catch (Exception e){JOptionPane.showMessageDialog(null, e);}
+    }//GEN-LAST:event_stdGradeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,5 +320,6 @@ public class showStudent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox<String> stdGrade;
     // End of variables declaration//GEN-END:variables
 }

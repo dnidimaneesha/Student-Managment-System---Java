@@ -136,6 +136,11 @@ public class Home extends javax.swing.JFrame {
         jButton2.setBounds(361, 438, 161, 137);
 
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\project Image\\showAdmin.png")); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(687, 438, 161, 137);
 
@@ -270,9 +275,20 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                       setVisible(false);
-                     AddAdmin object = new AddAdmin();
+                     AddAdmin object = null;
+        try {
+            object = new AddAdmin();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
                      object.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        setVisible(false);
+        ShowAdmin object = new ShowAdmin();
+        object.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
