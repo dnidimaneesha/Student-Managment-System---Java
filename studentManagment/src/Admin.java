@@ -115,6 +115,11 @@ public class Admin extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Main Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(500, 480, 119, 31);
 
@@ -217,19 +222,22 @@ public class Admin extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try{
-            stdId.setText("");
-            stdName.setText("");
-            stdAddress.setText("");
-            stdGrade.setText("");
-            stdAge.setText("");
-            stdGender.setText("");
-            stdFatherName.setText("");
-            stdphone.setText("");
+            adminID.setText("");
+            adminName.setText("");
+            adminUser.setText("");
+            adminPassword.setText("");
+            
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);
+        Home object = new Home();
+        object.setVisible(true);        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
