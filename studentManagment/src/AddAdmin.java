@@ -51,7 +51,8 @@ public class AddAdmin extends javax.swing.JFrame {
         adPassword = new javax.swing.JPasswordField();
         cancel = new javax.swing.JButton();
         submit = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -105,7 +106,7 @@ public class AddAdmin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cancel);
-        cancel.setBounds(386, 414, 97, 44);
+        cancel.setBounds(390, 430, 97, 44);
 
         submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         submit.setText("submit");
@@ -116,12 +117,22 @@ public class AddAdmin extends javax.swing.JFrame {
             }
         });
         jPanel1.add(submit);
-        submit.setBounds(161, 414, 100, 44);
+        submit.setBounds(120, 430, 100, 44);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\aaaaaaaaa\\admin.jpg")); // NOI18N
-        jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, 40, 560, 520);
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Clear");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(250, 430, 103, 44);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\aaaaaaaaa\\admin.jpg")); // NOI18N
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(0, -10, 540, 550);
 
         jMenu1.setText("File");
 
@@ -167,14 +178,14 @@ public class AddAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(576, 594));
+        setSize(new java.awt.Dimension(549, 546));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -221,6 +232,15 @@ public class AddAdmin extends javax.swing.JFrame {
            object.setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+           aduserName.setText("");  
+           adPassword.setText("");
+           adname.setText("");
+        }
+        catch (Exception e){JOptionPane.showMessageDialog(null, e);}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,11 +281,12 @@ public class AddAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField adname;
     private javax.swing.JTextField aduserName;
     private javax.swing.JButton cancel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -132,6 +133,11 @@ public class Home extends javax.swing.JFrame {
         jButton1.setBounds(88, 438, 161, 137);
 
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\project Image\\configuration1.png")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(361, 438, 161, 137);
 
@@ -291,9 +297,22 @@ public class Home extends javax.swing.JFrame {
             object = new ShowAdmin();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         object.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                    setVisible(false);
+                     Admin object = null;
+        try {
+            object = new Admin();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                     object.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
