@@ -31,7 +31,8 @@ public class Welcome extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         progress = new javax.swing.JProgressBar();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -41,7 +42,7 @@ public class Welcome extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Welcome");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(250, 100, 208, 40);
+        jLabel1.setBounds(260, 40, 208, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("Student Managment System");
@@ -59,22 +60,27 @@ public class Welcome extends javax.swing.JFrame {
         jPanel2.add(progress);
         progress.setBounds(170, 320, 354, 32);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\aaaaaaaaa\\new.jpeg")); // NOI18N
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(0, 0, 720, 500);
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 36)); // NOI18N
+        jLabel4.setText("Wimasuma Education Institute");
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(110, 110, 563, 44);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Desktop\\aaaaaaaaa\\new.jpeg")); // NOI18N
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(0, 0, 730, 500);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(741, 548));
+        setSize(new java.awt.Dimension(753, 547));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -136,7 +142,8 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar progress;
     // End of variables declaration//GEN-END:variables
