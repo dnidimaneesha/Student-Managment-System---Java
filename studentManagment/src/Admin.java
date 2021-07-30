@@ -245,7 +245,19 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-                   
+             try{
+              stmt =conn.createStatement();
+              
+              String username = adminUser.getText();
+              String password = adminPassword.getText();
+              String name = adminName.getText();
+              
+              String sql = "UPDATE ADMIN SET username = '"+username+"',password='"+password+"', name='"+name+"' ";
+              
+              stmt.executeUpdate(sql);
+              JOptionPane.showMessageDialog(null,"Data inserted success");
+              
+          }catch (Exception e){JOptionPane.showMessageDialog(null, e);}        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
