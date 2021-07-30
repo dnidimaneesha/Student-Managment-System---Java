@@ -1,3 +1,11 @@
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,8 +21,28 @@ public class Subject extends javax.swing.JFrame {
     /**
      * Creates new form Subject
      */
-    public Subject() {
+     Connection conn = null;
+         Statement stmt = null;
+         ResultSet rs =null;
+    
+    public Subject() throws ClassNotFoundException, SQLException {
+        super("Subject");
         initComponents();
+        conn = databaseConnection.connection();
+        showRecord();
+        
+    }
+    public void showRecord() throws SQLException{
+        try{
+            stmt = conn.createStatement();
+            String sql = "SELECT * FROM subjects";
+            ResultSet res = stmt.executeQuery(sql);
+            jTable1.setModel(DbUtils.resultSetToTableModel(res));
+            
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }
 
     /**
@@ -151,7 +179,7 @@ public class Subject extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Subject().setVisible(true);
+                //new Subject().setVisible(true);
             }
         });
     }

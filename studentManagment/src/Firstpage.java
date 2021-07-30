@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,7 +82,14 @@ public class Firstpage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
                      setVisible(false);
-                     Subject object = new Subject();
+                     Subject object = null;
+        try {
+            object = new Subject();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Firstpage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Firstpage.class.getName()).log(Level.SEVERE, null, ex);
+        }
                      object.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
