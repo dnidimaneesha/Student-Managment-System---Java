@@ -66,6 +66,7 @@ public class Subject extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -147,9 +148,9 @@ public class Subject extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            setVisible(false);
-                     AddSubject object = null;
+                     Login2 object = null;
          try {
-             object = new AddSubject();
+             object = new Login2();
          } catch (ClassNotFoundException ex) {
              Logger.getLogger(Subject.class.getName()).log(Level.SEVERE, null, ex);
          }
