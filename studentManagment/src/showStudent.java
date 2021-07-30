@@ -30,7 +30,7 @@ public class showStudent extends javax.swing.JFrame {
          ResultSet rs =null;
     
     public showStudent() throws ClassNotFoundException {
-        super ("student");
+        super ("showStudent");
         initComponents();
         conn = databaseConnection.connection();
         showRecord();
