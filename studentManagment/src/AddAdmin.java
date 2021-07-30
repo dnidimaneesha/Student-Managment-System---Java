@@ -226,12 +226,6 @@ public class AddAdmin extends javax.swing.JFrame {
           }catch (Exception e){JOptionPane.showMessageDialog(null, e);}
     }//GEN-LAST:event_submitActionPerformed
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-           setVisible(false);
-           Home object = new Home();
-           object.setVisible(true);
-    }//GEN-LAST:event_cancelActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
            aduserName.setText("");  
@@ -240,6 +234,12 @@ public class AddAdmin extends javax.swing.JFrame {
         }
         catch (Exception e){JOptionPane.showMessageDialog(null, e);}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        setVisible(false);
+        Home object = new Home();
+        object.setVisible(true);
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments

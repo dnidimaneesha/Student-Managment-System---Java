@@ -144,7 +144,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        System.exit(0);
+        setVisible(false);
+                     FirstPageNew object = new FirstPageNew();
+                     object.setVisible(true);
+                                        
     }//GEN-LAST:event_cancelActionPerformed
 
     /**

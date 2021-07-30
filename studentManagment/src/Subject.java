@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -139,13 +141,18 @@ public class Subject extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          setVisible(false);
-                     Firstpage object = new Firstpage();
+                     FirstPageNew object = new FirstPageNew();
                      object.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            setVisible(false);
-                     AddSubject object = new AddSubject();
+                     AddSubject object = null;
+         try {
+             object = new AddSubject();
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(Subject.class.getName()).log(Level.SEVERE, null, ex);
+         }
                      object.setVisible(true);        
     }//GEN-LAST:event_jButton1ActionPerformed
 

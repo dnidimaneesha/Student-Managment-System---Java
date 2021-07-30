@@ -129,7 +129,7 @@ public class Welcome extends javax.swing.JFrame {
                
             }
               load.setVisible(false);
-              Login log = new Login();
+              FirstPageNew log = new FirstPageNew();
               log.setVisible(true);
        }
         catch(Exception e){
